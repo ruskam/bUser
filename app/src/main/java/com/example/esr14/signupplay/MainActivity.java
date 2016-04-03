@@ -42,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
             String passwordFromDB = databaseHelper.searchPassword(username);
 
-            if( usernameET.getText().toString().length() == 0 )
-                usernameET.setError( "Username is required!" );
-
-            if( passwordET.getText().toString().length() == 0 )
-                passwordET.setError( "Password is required!" );
 
             if (usernameET.getText().toString().length() != 0
                     && password.equals(passwordFromDB)) {
@@ -56,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
                 loginIntent.putExtra("password", password);
 
                 startActivity(loginIntent);
-            } else {
-                Toast warning = Toast.makeText(MainActivity.this, "Passwords do not match", Toast.LENGTH_SHORT);
+            } else if (usernameET.getText().toString().length() == 0
+                    && passwordET.getText().toString().length() != 0) {
+                usernameET.setError("Username is required!");
+            } else if (passwordET.getText().toString().length() == 0
+                    && usernameET.getText().toString().length() != 0) {
+                passwordET.setError("Password is required!");
+            } else if (passwordET.getText().toString().length() == 0
+                    && usernameET.getText().toString().length() == 0) {
+                usernameET.setError("Username is required!");
+                passwordET.setError("Password is required!");
+            }
+            else {
+                Toast warning = Toast.makeText(MainActivity.this, "Password is incorrect", Toast.LENGTH_SHORT);
                 warning.show();
             }
 
@@ -68,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cleanData(View view) {
-        if (view.getId() == R.id.cleanData){
+        if (view.getId() == R.id.cleanData) {
             databaseHelper.removeAllUsers("user");
         }
     }
