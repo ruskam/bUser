@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 warning.show();
             }
 
-            //          Log.i("Login clicked", "YES");
             Log.i("Data exist?", databaseHelper.dataExist().toString());
 
         }
