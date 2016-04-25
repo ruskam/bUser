@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">bUser</string>
+    <string name="registerActivityLabel">New Account</string>
+    <string name="displayActivityLabel">Welcome to bUser</string>
+    <string name="mainActivityLabel">Welcome to bUser</string>
+
+
+</resources>
