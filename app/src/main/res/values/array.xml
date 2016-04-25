@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="starting_point">
+        <item>Closest Stop</item>
+        <item>Specific Stop</item>
+    </string-array>
+    <string-array name="starting_point_values">
+        <item>Op1Val1</item>
+        <item>Op2Val2</item>
+    </string-array>
+    <string-array name="ending_point">
+        <item>Closest Stop</item>
+        <item>Specific Stop</item>
+    </string-array>
+    <string-array name="ending_point_values">
+        <item>Op1Val1</item>
+        <item>Op2Val2</item>
+    </string-array>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/route_preferences">
+        <SwitchPreference
+            android:title="@string/start_point"
+            android:key="start_point"
+            android:summaryOff="@string/closest_stop"
+            android:summaryOn="@string/specific_stop"
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            />
+        <EditTextPreference
+            android:key="specific_start"
+            android:dependency="start_point"
+            android:defaultValue="@string/other_stop"
+            android:title="@string/other_stop"
+            android:shouldDisableView="true"
+            />
+        <SwitchPreference
+            android:title="@string/ending_point"
+            android:key="end_point"
+            android:id="@+id/end_point"
+            android:summaryOff="@string/closest_stop"
+            android:summaryOn="@string/specific_stop"
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            />
+        <EditTextPreference
+            android:key="specific_end"
+            android:dependency="end_point"
+            android:defaultValue="@string/other_stop"
+            android:title="@string/other_stop"
+            android:shouldDisableView="true"
+            />
+
+        <CheckBoxPreference
+            android:key="save_route"
+            android:title="@string/save_route"
+            android:summary="@string/save_route"
+             />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/other_settings">
+
+        <!-- This PreferenceScreen tag sends the user to a new fragment of
+             preferences.  If running in a large screen, they can be embedded
+             inside of the overall preferences UI. -->
+        <PreferenceScreen
+            android:key="acc_sett"
+            android:title="@string/acc_settings"
+            android:summary="@string/manage_acc_explained">
+            <EditTextPreference
+                android:key="display_username"
+                android:title="Username:"
+                android:text="user"
+                android:enabled="false"
+                android:shouldDisableView="false"
+                />
+            <EditTextPreference
+                android:key = "pass"
+                android:title ="Password"
+                android:enabled="false"
+                />
+            <CheckBoxPreference
+                android:key = "fast_login"
+                android:title="@string/rememember_creds"
+                android:contentDescription="Save this settings for next login"
+                />
+        </PreferenceScreen>
+
+        <!-- This PreferenceScreen tag sends the user to a completely different
+             activity, switching out of the current preferences UI.
+        <PreferenceScreen
+            android:title="@string/title_intent_preference"
+            android:summary="@string/summary_intent_preference">
+
+            <intent android:action="android.intent.action.VIEW"
+                android:data="http://www.android.com" />
+
+        </PreferenceScreen>-->
+
+    </PreferenceCategory>
+
+    <!--<PreferenceCategory
+        android:title="@string/preference_attributes">
+
+        <CheckBoxPreference
+            android:key="parent_checkbox_preference"
+            android:title="@string/title_parent_preference"
+            android:summary="@string/summary_parent_preference" />
+
+        &lt;!&ndash; The visual style of a child is defined by this styled theme attribute. &ndash;&gt;
+        <CheckBoxPreference
+            android:key="child_checkbox_preference"
+            android:dependency="parent_checkbox_preference"
+            android:layout="?android:attr/preferenceLayoutChild"
+            android:title="@string/title_child_preference"
+            android:summary="@string/summary_child_preference" />
+
+    </PreferenceCategory>-->
+
+</PreferenceScreen>

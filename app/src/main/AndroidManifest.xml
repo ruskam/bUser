@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="@string/mainActivityLabel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,15 +17,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Display"
             android:label="@string/displayActivityLabel" />
-
         <activity
             android:name=".Register"
             android:label="@string/registerActivityLabel" />
-
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/settings" />
+        <activity
+            android:name=".BusStopAct"
+            android:label="Bus Stop" />
+        <activity
+            android:name=".insideBus"
+            android:label="Bus" />
+        <activity
+            android:name=".StopBus"
+            android:label="@string/title_activity_stop_bus"></activity>
     </application>
 
 </manifest>

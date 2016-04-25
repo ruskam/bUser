@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (usernameET.getText().toString().length() != 0
                     && password.equals(passwordFromDB)) {
-                Intent loginIntent = new Intent(MainActivity.this, Display.class);
+                Intent loginIntent = new Intent(MainActivity.this, BusStopAct.class);
 
                 loginIntent.putExtra("username", username);
                 loginIntent.putExtra("password", password);
