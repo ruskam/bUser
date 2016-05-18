@@ -75,7 +75,7 @@
     <Button
         android:id="@+id/stop_butt"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="#ff0000"
         android:gravity="center_horizontal"
         android:onClick="stopBus"
