@@ -1,133 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".BusStopAct">
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
 
-    <ImageView
-        android:id="@+id/img_bustop1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/busstop1"
-        android:layout_centerHorizontal="true"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".BusStopAct">
 
-        />
+        <ImageView
+            android:id="@+id/img_bustop1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/busstop1"
 
-    <TextView
-        android:id="@+id/bustoplabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_bustop1"
-        android:layout_centerHorizontal="true"
-        android:text="Vendas Novas"
-        android:textStyle="bold"
             />
 
-    <ImageView
-        android:id="@+id/ic_b1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/bus_default"
-        android:layout_below="@+id/bustoplabel"
-        android:layout_marginTop="60dp"
-        android:onClick="getInsideBus"/>
+        <TextView
+            android:id="@+id/bustoplabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_bustop1"
+            android:layout_centerHorizontal="true"
+            android:text="Vendas Novas"
+            android:textStyle="bold" />
 
-    <TextView
-    android:id="@+id/busline1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_toEndOf="@+id/ic_b1"
-    android:layout_alignTop="@+id/ic_b1"
-    android:text="Line 767 - Damaia"
-    android:textStyle="bold"
-        android:onClick="getInsideBus"
-    />
-    <TextView
-        android:id="@+id/line1_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/ic_b1"
-        android:layout_below="@+id/busline1"
-        android:text="5 minutes"
-        android:onClick="getInsideBus"
-        />
+        <ImageView
+            android:id="@+id/ic_b1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/bustoplabel"
+            android:layout_marginTop="60dp"
+            android:onClick="getInsideBus"
+            android:src="@drawable/bus_default" />
 
-    <ImageView
-        android:id="@+id/ic_b2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/bus_default"
-        android:layout_below="@+id/ic_b1"
-        android:layout_marginTop="60dp"/>
-    android:onClick="getInsideBus"
+        <TextView
+            android:id="@+id/busline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ic_b1"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b1"
+            android:onClick="getInsideBus"
+            android:text="Line 767 - Damaia"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/busline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/ic_b2"
-        android:layout_alignTop="@+id/ic_b2"
-        android:layout_marginLeft="10dp"
-        android:text="Line 736 - Sr. Roubado"
-        android:textStyle="bold"
+        <TextView
+            android:id="@+id/line1_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/busline1"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b1"
+            android:onClick="getInsideBus"
+            android:text="5 minutes" />
+
+        <ImageView
+            android:id="@+id/ic_b2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ic_b1"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/bus_default" />
         android:onClick="getInsideBus"
-        />
-    <TextView
-        android:id="@+id/line2_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/ic_b2"
-        android:layout_below="@+id/busline2"
-        android:text="6 minutes"
+
+        <TextView
+            android:id="@+id/busline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ic_b2"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b2"
+            android:onClick="getInsideBus"
+            android:text="Line 736 - Sr. Roubado"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/line2_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/busline2"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b2"
+            android:onClick="getInsideBus"
+            android:text="6 minutes" />
+
+        <ImageView
+            android:id="@+id/ic_b3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/ic_b2"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/bus_default" />
         android:onClick="getInsideBus"
-        />
-    <ImageView
-        android:id="@+id/ic_b3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/bus_default"
-        android:layout_below="@+id/ic_b2"
-        android:layout_marginTop="60dp"/>
-    android:onClick="getInsideBus"
-    <TextView
-        android:id="@+id/busline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/ic_b3"
-        android:layout_alignTop="@+id/ic_b3"
-        android:layout_marginLeft="10dp"
-        android:text="Line 701 - Cpo. Ourique"
-        android:textStyle="bold"
-        android:onClick="getInsideBus"
-        />
-    <TextView
-        android:id="@+id/line3_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/ic_b3"
-        android:layout_below="@+id/busline3"
-        android:text="8 minutes"
-        android:onClick="getInsideBus"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:onClick="displaySettings"
-        android:layout_gravity="right"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="37dp"
-        android:id="@+id/button" />
+
+        <TextView
+            android:id="@+id/busline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ic_b3"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b3"
+            android:onClick="getInsideBus"
+            android:text="Line 701 - Cpo. Ourique"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/line3_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/busline3"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/ic_b3"
+            android:onClick="getInsideBus"
+            android:text="8 minutes" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="right"
+            android:layout_marginBottom="37dp"
+            android:onClick="displaySettings"
+            android:text="@string/settings" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
+

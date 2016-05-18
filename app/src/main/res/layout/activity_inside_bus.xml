@@ -8,12 +8,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".insideBus">
+
     <ImageView
         android:id="@+id/img_bus1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/bus_default"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/bus_default"
 
         />
 
@@ -24,40 +25,46 @@
         android:layout_below="@+id/img_bus1"
         android:layout_centerHorizontal="true"
         android:text="Bus 767"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <RadioGroup
         android:id="@+id/stop_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bus_label1"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical">
 
-        <RadioButton android:id="@+id/stopa"
+        <RadioButton
+            android:id="@+id/stopa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vendas Novas"
-            android:checked="true"/>
-    <RadioButton android:id="@+id/stopb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Campo Grande" />
-    <RadioButton android:id="@+id/stopc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Benfica  (Destination)" />
+            android:checked="true"
+            android:text="Vendas Novas" />
+
+        <RadioButton
+            android:id="@+id/stopb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Campo Grande" />
+
+        <RadioButton
+            android:id="@+id/stopc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Benfica  (Destination)" />
+
         <TextView
             android:id="@+id/destination"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_toEndOf="@+id/stopc"
-            android:text="..."
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            />
-        <RadioButton android:id="@+id/stopd"
+            android:layout_toEndOf="@+id/stopc"
+            android:text="..." />
+
+        <RadioButton
+            android:id="@+id/stopd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Damaia" />
@@ -66,27 +73,28 @@
     </RadioGroup>
 
 
-
     <Button
         android:id="@+id/stop_butt"
         android:layout_width="300dp"
         android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
         android:background="#ff0000"
+        android:gravity="center_horizontal"
+        android:onClick="stopBus"
         android:text="STOP!"
         android:textColor="#000"
         android:textSize="50dp"
-        android:onClick="stopBus"
 
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:onClick="displaySettings"
-        android:layout_gravity="right"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_gravity="right"
         android:layout_marginBottom="37dp"
-        android:id="@+id/button" />
+        android:onClick="displaySettings"
+        android:text="@string/settings" />
 </RelativeLayout>
