@@ -1,4 +1,4 @@
-package com.example.esr14.signupplay.settings;
+package com.example.esr14.signupplay.Model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 

@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.esr14.signupplay.Model.User;
+
 /**
  * Created by ESR14 on 28/03/16.
  */

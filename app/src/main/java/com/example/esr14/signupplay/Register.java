@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.esr14.signupplay.Model.User;
+
 public class Register extends AppCompatActivity {
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
