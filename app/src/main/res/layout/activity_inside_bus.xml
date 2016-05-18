@@ -31,10 +31,9 @@
         android:id="@+id/stop_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bus_label1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <RadioButton
             android:id="@+id/stopa"
@@ -76,25 +75,24 @@
     <Button
         android:id="@+id/stop_butt"
         android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:background="#ff0000"
         android:gravity="center_horizontal"
         android:onClick="stopBus"
         android:text="STOP!"
         android:textColor="#000"
-        android:textSize="50dp"
+        android:textSize="20dp"
 
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/button"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_gravity="right"
-        android:layout_marginBottom="37dp"
         android:onClick="displaySettings"
-        android:text="@string/settings" />
+        android:text="@string/settings"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/stop_group" />
 </RelativeLayout>
