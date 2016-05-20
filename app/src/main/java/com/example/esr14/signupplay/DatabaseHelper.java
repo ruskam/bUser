@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
 
         contentValues.put(COLUMN_ID, count);
-        contentValues.put(COLUMN_UNAME, user.getUname());
+        contentValues.put(COLUMN_UNAME, user.getUsername());
         contentValues.put(COLUMN_PASS, user.getPassword());
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
