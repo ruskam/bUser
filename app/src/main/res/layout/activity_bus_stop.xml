@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,8 +67,9 @@
             android:layout_height="60dp"
             android:layout_below="@+id/ic_b1"
             android:layout_marginTop="60dp"
+            android:onClick="getInsideBus"
             android:src="@drawable/bus_default" />
-        android:onClick="getInsideBus"
+
 
         <TextView
             android:id="@+id/busline2"
@@ -97,8 +98,9 @@
             android:layout_height="60dp"
             android:layout_below="@+id/ic_b2"
             android:layout_marginTop="60dp"
+            android:onClick="getInsideBus"
             android:src="@drawable/bus_default" />
-        android:onClick="getInsideBus"
+
 
         <TextView
             android:id="@+id/busline3"

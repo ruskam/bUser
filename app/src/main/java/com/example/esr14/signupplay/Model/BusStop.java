@@ -1,5 +1,6 @@
 package com.example.esr14.signupplay.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
@@ -12,20 +13,31 @@ import java.util.List;
 public class BusStop {
 
     private String id;
-    private  String stopName;
+    private String stopName;
     private Location location;
     List<String> lines;
     List<String> schedule;
 
-    public BusStop(){
+    public BusStop() {
 
     }
+
+    @JsonIgnore
+    private String _links;
 
     public BusStop(String stopName, Location location, List<String> lines, List<String> schedule) {
         this.stopName = stopName;
         this.location = location;
         this.lines = lines;
         this.schedule = schedule;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStopName() {
