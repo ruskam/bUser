@@ -59,7 +59,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
-            android:text="5 minutes" />
+            android:text="Next bus:" />
 
         <ImageView
             android:id="@+id/ic_b2"
@@ -133,6 +133,16 @@
             android:layout_marginBottom="37dp"
             android:onClick="displaySettings"
             android:text="@string/settings" />
+
+        <TextView
+            android:id="@+id/tvNextBusTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:onClick="getInsideBus"
+            android:text="5 minutes"
+            android:layout_alignTop="@+id/line1_details"
+            android:layout_alignEnd="@+id/busline2" />
 
 
     </RelativeLayout>
