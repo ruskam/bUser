@@ -3,7 +3,6 @@ package com.example.esr14.signupplay.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -11,7 +10,7 @@ import java.util.List;
  * Created by Rustam Kamberov on 01/05/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BusStop implements Serializable {
+public class BusStop{
 
     private String id;
     private String stopName;
