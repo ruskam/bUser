@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.esr14.signupplay.Model.BusStop;
 import com.example.esr14.signupplay.settings.SettingsActivity;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -25,10 +27,14 @@ import java.util.Map;
  */
 public class BusStopAct extends AppCompatActivity {
 
+    TextView tvNextBusTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_stop);
+
+        tvNextBusTime = (TextView) findViewById(R.id.tvNextBusTime);
 
     }
 
@@ -51,6 +57,7 @@ public class BusStopAct extends AppCompatActivity {
      * Send a GET request to read data from the database Web API
      */
     private class HttpRequestTask extends AsyncTask<Void, Void, BusStop> {
+
         @Override
         protected BusStop doInBackground(Void... params) {
             try {
@@ -68,17 +75,38 @@ public class BusStopAct extends AppCompatActivity {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(BusStop busStop) {
-
             try{
                 Log.i("info", busStop.getStopName());
+
+                List<String> schedule = busStop.getSchedule();
+                Map<String, List<Integer>> scheduleMap = new HashMap<>();
+                JSONObject scheduleObject = null;
+                for (int i = 0; i < schedule.size(); i++) {
+                    Log.i("line " + i, schedule.get(i));
+                    try {
+                        scheduleObject = new JSONObject(schedule.get(i));
+                        Iterator<?> keys = scheduleObject.keys();
+                        while (keys.hasNext()) {
+                            String key = (String) keys.next();
+                            Log.i("key", key);
+                            String valString = scheduleObject.getString(key);
+                            Integer val = Integer.valueOf(valString);
+                            Log.i("val", val.toString());
+                            List<String> items = Arrays.asList(val.split("\\s*,\\s*"));
+                            scheduleMap.put(key, items);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 List<String> lines = busStop.getLines();
                 int s = lines.size();
                 Log.i("List size", String.valueOf(s));
                 JSONObject linesObject = null;
-                Map<String, String> linesMap = new HashMap<>();
+                Map<String, List<String>> linesMap = new HashMap<>();
                 for (int i = 0; i < lines.size(); i++) {
                     Log.i("line " + i, String.valueOf(lines.get(i)));
                     Log.i("line " + i, String.valueOf(lines.get(i)));
@@ -91,7 +119,8 @@ public class BusStopAct extends AppCompatActivity {
                             Log.i("key", key);
                             String val = linesObject.getString(key);
                             Log.i("val", val);
-                            linesMap.put(key, val);
+                            List<String> items = Arrays.asList(val.split("\\s*,\\s*"));
+                            linesMap.put(key, items);
 
                         }
                     } catch (JSONException e) {
@@ -99,14 +128,16 @@ public class BusStopAct extends AppCompatActivity {
                     }
                 }
 
-                for (Map.Entry<String, String> entry : linesMap.entrySet()) {
-                    Log.i("map", entry.getKey() + ": " + entry.getValue());
+                for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
+                    Log.i("mapLINES", entry.getKey() + ": " + entry.getValue());
+                    List<String> temp = entry.getValue();
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-
         }
+
     }
 }
