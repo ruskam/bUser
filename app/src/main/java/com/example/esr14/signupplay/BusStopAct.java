@@ -137,6 +137,8 @@ public class BusStopAct extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
+
 /**
                 for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
                     Log.i("mapLINES", entry.getKey() + ": " + entry.getValue());

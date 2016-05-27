@@ -1,5 +1,8 @@
 package com.example.esr14.signupplay.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Rustam Kamberov on 17/04/16.
  */
@@ -34,7 +37,7 @@ public class MyTime {
         return time;
     }
 
-    public static int[] timeLeft(int hour, int minute, int hourCurrent, int minuteCurrent) {
+    private static int[] timeLeft(int hour, int minute, int hourCurrent, int minuteCurrent) {
         if (MyTime.timeToInt(hourCurrent, minuteCurrent) > MyTime.timeToInt(hour, minute)) {
             time = MyTime.intToHourMinute(MyTime.timeToInt(hourCurrent, minuteCurrent) - MyTime.timeToInt(hour, minute));
             return time;
@@ -43,4 +46,18 @@ public class MyTime {
         return null;
     }
 
+    public static List<Integer> getNextBusTime(int n, int hourCurrent, int minuteCurrent, List<Integer> schedule) {
+        List<Integer> nextBus = new ArrayList<>();
+        int count = 0;
+        for (int i = 0; i < schedule.size(); i++) {
+            if (timeToInt(hourCurrent, minuteCurrent) < schedule.get(i) && count < n) {
+                nextBus.add(schedule.get(i));
+                count++;
+            }
+        }
+        System.out.println(nextBus.get(0));
+        System.out.println(nextBus.get(1));
+        System.out.println(nextBus.get(2));
+        return nextBus;
+    }
 }
