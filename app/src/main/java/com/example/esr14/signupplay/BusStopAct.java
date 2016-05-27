@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -92,10 +93,18 @@ public class BusStopAct extends AppCompatActivity {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String valString = scheduleObject.getString(key);
-                            Integer val = Integer.valueOf(valString);
-                            Log.i("val", val.toString());
-                            List<String> items = Arrays.asList(val.split("\\s*,\\s*"));
-                            scheduleMap.put(key, items);
+                            //Integer val = Integer.valueOf(valString);
+                            //Log.i("val", val.toString());
+                            //valString = valString.replaceAll("[^0-9]","");
+                            valString = valString.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
+                            List<String> items = Arrays.asList(valString.split(","));
+                            List<Integer> itemsInteger = new ArrayList<>();
+                            for (int k = 0; k < items.size(); k++) {
+                                Integer val = Integer.valueOf(items.get(k).trim());
+                                itemsInteger.add(val);
+                            }
+                            Log.i("one hour", items.get(0));
+                            scheduleMap.put(key, itemsInteger);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -118,8 +127,9 @@ public class BusStopAct extends AppCompatActivity {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String val = linesObject.getString(key);
+                            val = val.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
                             Log.i("val", val);
-                            List<String> items = Arrays.asList(val.split("\\s*,\\s*"));
+                            List<String> items = Arrays.asList(val.split(","));
                             linesMap.put(key, items);
 
                         }
@@ -127,12 +137,22 @@ public class BusStopAct extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
+/**
                 for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
                     Log.i("mapLINES", entry.getKey() + ": " + entry.getValue());
                     List<String> temp = entry.getValue();
+                    for (String t: temp){
+                        Log.i("element of stop", t);
+                    }
                 }
-
+                for (Map.Entry<String, List<Integer>> entry : scheduleMap.entrySet()) {
+                    Log.i("mapSchedule", entry.getKey() + ": " + entry.getValue());
+                    List<Integer> temp = entry.getValue();
+                    for (Integer t: temp){
+                        Log.i("element of time", t.toString());
+                    }
+                }
+*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
