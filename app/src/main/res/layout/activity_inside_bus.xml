@@ -36,26 +36,26 @@
         android:layout_centerHorizontal="true">
 
         <RadioButton
-            android:id="@+id/stopa"
+            android:id="@+id/stop1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="Vendas Novas" />
 
         <RadioButton
-            android:id="@+id/stopb"
+            android:id="@+id/stop2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Campo Grande" />
 
         <RadioButton
-            android:id="@+id/stopc"
+            android:id="@+id/stop3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Benfica  (Destination)" />
+            android:text="Benfica" />
 
         <TextView
-            android:id="@+id/destination"
+            android:id="@+id/stopc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

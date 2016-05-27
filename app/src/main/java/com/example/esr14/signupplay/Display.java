@@ -2,13 +2,13 @@ package com.example.esr14.signupplay;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.esr14.signupplay.settings.SettingsActivity;
+import com.example.esr14.signupplay.util.AbstractActivity;
 
-public class Display extends AppCompatActivity {
+public class Display extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

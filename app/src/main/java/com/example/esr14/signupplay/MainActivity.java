@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         usernameET = (EditText) findViewById(R.id.loginEditText);
         passwordET = (EditText) findViewById(R.id.passEditText);
 
-        usernameET.setText("");
-        passwordET.setText("");
+        usernameET.setText(".");
+        passwordET.setText(".");
     }
 
     public void registerUser(View view) {

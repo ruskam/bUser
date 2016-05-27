@@ -1,10 +1,10 @@
 package com.example.esr14.signupplay;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 
-public class StopBus extends Activity {
+import com.example.esr14.signupplay.util.AbstractActivity;
+
+public class StopBus extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

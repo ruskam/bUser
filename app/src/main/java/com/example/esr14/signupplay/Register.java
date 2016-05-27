@@ -2,14 +2,14 @@ package com.example.esr14.signupplay;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.esr14.signupplay.Model.User;
+import com.example.esr14.signupplay.util.AbstractActivity;
 
-public class Register extends AppCompatActivity {
+public class Register extends AbstractActivity {
 
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
 

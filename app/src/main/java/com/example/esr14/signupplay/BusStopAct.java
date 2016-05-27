@@ -3,12 +3,13 @@ package com.example.esr14.signupplay;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.esr14.signupplay.Model.BusStop;
 import com.example.esr14.signupplay.settings.SettingsActivity;
+import com.example.esr14.signupplay.util.AbstractActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,20 +24,47 @@ import java.util.Map;
 /**
  * This class is called after a user is logged in
  */
-public class BusStopAct extends AppCompatActivity {
+
+public class BusStopAct extends AbstractActivity {
+    final String DEV = "device";
+    Button retry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_stop);
+        retry = (Button) findViewById(R.id.button_retry);
 
+        connect();
+        if (isBtConnected) {
+            msg("ok");
+            retry.setText("Connected");
+        }
+        else {
+            msg("Failed to connect");
+        }
+        retry.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                    msg("Retrying to connect");
+                    if(connect())
+                         retry.setText("Connected");
+
+            }
+        });
     }
-
+@Override
+public void detectedCard() {
+    startActivity(new Intent(this,insideBus.class));
+}
     public void displaySettings(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
     }
 
-    public void getInsideBus(View view){
+    public void getInsideBus(View view) {
         startActivity(new Intent(this, insideBus.class));
     }
 
@@ -72,7 +100,7 @@ public class BusStopAct extends AppCompatActivity {
         @Override
         protected void onPostExecute(BusStop busStop) {
 
-            try{
+            try {
                 Log.i("info", busStop.getStopName());
                 List<String> lines = busStop.getLines();
                 int s = lines.size();
@@ -109,4 +137,7 @@ public class BusStopAct extends AppCompatActivity {
 
         }
     }
+
+
+
 }
