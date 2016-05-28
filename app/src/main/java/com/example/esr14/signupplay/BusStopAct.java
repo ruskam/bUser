@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.esr14.signupplay.Model.BusStop;
 import com.example.esr14.signupplay.settings.SettingsActivity;
@@ -16,6 +17,8 @@ import org.json.JSONObject;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,11 +32,14 @@ public class BusStopAct extends AbstractActivity {
     final String DEV = "device";
     Button retry;
 
+    TextView tvNextBusTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_stop);
         retry = (Button) findViewById(R.id.button_retry);
+        tvNextBusTime = (TextView) findViewById(R.id.tvNextBusTime);
 
         connect();
         if (isBtConnected) {
@@ -48,7 +54,6 @@ public class BusStopAct extends AbstractActivity {
             @Override
             public void onClick(View v)
             {
-
                     msg("Retrying to connect");
                     if(connect())
                          retry.setText("Connected");
@@ -79,6 +84,7 @@ public void detectedCard() {
      * Send a GET request to read data from the database Web API
      */
     private class HttpRequestTask extends AsyncTask<Void, Void, BusStop> {
+
         @Override
         protected BusStop doInBackground(Void... params) {
             try {
@@ -96,17 +102,47 @@ public void detectedCard() {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(BusStop busStop) {
 
             try {
                 Log.i("info", busStop.getStopName());
+
+                List<String> schedule = busStop.getSchedule();
+                Map<String, List<Integer>> scheduleMap = new HashMap<>();
+                JSONObject scheduleObject = null;
+                for (int i = 0; i < schedule.size(); i++) {
+                    Log.i("line " + i, schedule.get(i));
+                    try {
+                        scheduleObject = new JSONObject(schedule.get(i));
+                        Iterator<?> keys = scheduleObject.keys();
+                        while (keys.hasNext()) {
+                            String key = (String) keys.next();
+                            Log.i("key", key);
+                            String valString = scheduleObject.getString(key);
+                            //Integer val = Integer.valueOf(valString);
+                            //Log.i("val", val.toString());
+                            //valString = valString.replaceAll("[^0-9]","");
+                            valString = valString.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
+                            List<String> items = Arrays.asList(valString.split(","));
+                            List<Integer> itemsInteger = new ArrayList<>();
+                            for (int k = 0; k < items.size(); k++) {
+                                Integer val = Integer.valueOf(items.get(k).trim());
+                                itemsInteger.add(val);
+                            }
+                            Log.i("one hour", items.get(0));
+                            scheduleMap.put(key, itemsInteger);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 List<String> lines = busStop.getLines();
                 int s = lines.size();
                 Log.i("List size", String.valueOf(s));
                 JSONObject linesObject = null;
-                Map<String, String> linesMap = new HashMap<>();
+                Map<String, List<String>> linesMap = new HashMap<>();
                 for (int i = 0; i < lines.size(); i++) {
                     Log.i("line " + i, String.valueOf(lines.get(i)));
                     Log.i("line " + i, String.valueOf(lines.get(i)));
@@ -118,8 +154,10 @@ public void detectedCard() {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String val = linesObject.getString(key);
+                            val = val.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
                             Log.i("val", val);
-                            linesMap.put(key, val);
+                            List<String> items = Arrays.asList(val.split(","));
+                            linesMap.put(key, items);
 
                         }
                     } catch (JSONException e) {
@@ -127,15 +165,29 @@ public void detectedCard() {
                     }
                 }
 
-                for (Map.Entry<String, String> entry : linesMap.entrySet()) {
-                    Log.i("map", entry.getKey() + ": " + entry.getValue());
+
+/**
+                for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
+                    Log.i("mapLINES", entry.getKey() + ": " + entry.getValue());
+                    List<String> temp = entry.getValue();
+                    for (String t: temp){
+                        Log.i("element of stop", t);
+                    }
                 }
+                for (Map.Entry<String, List<Integer>> entry : scheduleMap.entrySet()) {
+                    Log.i("mapSchedule", entry.getKey() + ": " + entry.getValue());
+                    List<Integer> temp = entry.getValue();
+                    for (Integer t: temp){
+                        Log.i("element of time", t.toString());
+                    }
+                }
+*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-
         }
+
     }
 
 

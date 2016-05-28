@@ -35,7 +35,7 @@ public class AbstractActivity extends AppCompatActivity {
                 int endOfLineIndex = recDataString.indexOf("+");                    // determine the end-of-line
                 if (endOfLineIndex > 0) {                                           // make sure there data before +
                     String dataInPrint = recDataString.substring(1, endOfLineIndex);    // extract string
-                    msg(dataInPrint); //remover
+                    //msg(dataInPrint); //remover
                     if (recDataString.charAt(0) == '~')
                     {
                        String id = dataInPrint.substring(0,dataInPrint.indexOf(","));
