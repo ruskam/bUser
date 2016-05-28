@@ -1,7 +1,6 @@
 package com.example.esr14.signupplay.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
@@ -12,8 +11,8 @@ import java.util.List;
 public class ResponseTemplate{
 
 //    private String averageDistance;
-    @JsonProperty("content")
-    private List<String> content;
+
+    private List<BusStop> content;
 
     public ResponseTemplate(){
 
@@ -27,15 +26,15 @@ public class ResponseTemplate{
         this.averageDistance = averageDistance;
     }
 */
-    public List<String> getContent() {
+    public List<BusStop> getContent() {
         return content;
     }
 
-    public void setContent(List<String> content) {
+    public void setContent(List<BusStop> content) {
         this.content = content;
     }
 
-    public ResponseTemplate(List<String> content) {
+    public ResponseTemplate(List<BusStop> content) {
 
   //      this.averageDistance = averageDistance;
         this.content = content;

@@ -25,7 +25,7 @@ public class AbstractActivity extends AppCompatActivity {
     public boolean ledon = false;
     private BluetoothDevice device = null;
     public MessageThread myMessageThread = null;
-    public Handler handler = new Handler() {
+    public  Handler handler = new Handler() {
 
 
         public void handleMessage(android.os.Message message) {
@@ -34,19 +34,23 @@ public class AbstractActivity extends AppCompatActivity {
                 recDataString.append(readMessage);                                      //keep appending to string until +
                 int endOfLineIndex = recDataString.indexOf("+");                    // determine the end-of-line
                 if (endOfLineIndex > 0) {                                           // make sure there data before +
-                    String dataInPrint = recDataString.substring(1, endOfLineIndex);    // extract string
-                    msg(dataInPrint); //remover
+                    String dataInPrint = "";
                     if (recDataString.charAt(0) == '~')
                     {
-                       String id = dataInPrint.substring(0,dataInPrint.indexOf(","));
+                        dataInPrint = recDataString.substring(1, endOfLineIndex);
+                        String id = dataInPrint.substring(0,dataInPrint.indexOf(","));
                         if(id.equals(thisID)) {
                             detectedCard();
                         }
                         else turnOnLed();
                     }
-                    if(dataInPrint.equals("NXT")||dataInPrint.equals("XT"))
-                        nextStop();
-                    
+                    else{
+                        dataInPrint = recDataString.substring(0, endOfLineIndex);
+                        if(dataInPrint.equals("NXT"))
+                            nextStop();
+                    }
+
+                   // msg(dataInPrint);
                     recDataString.delete(0, recDataString.length());                    //clear all string data
                 }
             }
@@ -95,20 +99,29 @@ public class AbstractActivity extends AppCompatActivity {
     {
         if (btSocket!=null)
         {
-            ledon = false;
+            if(myConnectThread == null)
+                connect();
             if(myMessageThread==null)
                 myMessageThread = myConnectThread.getMessageThread();
-            myMessageThread.write("TF");
+            if(myMessageThread!=null){
+                myMessageThread.write("TF");
+                ledon = false;
+            }
+
 
         }
     }
 
     public void turnOnLed() {
         if (btSocket != null) {
-            ledon = true;
+            if(myConnectThread == null)
+                connect();
             if(myMessageThread==null)
                 myMessageThread = myConnectThread.getMessageThread();
-            myMessageThread.write("TO");
+            if(myMessageThread!=null){
+                myMessageThread.write("TO");
+                ledon = true;
+            }
         }
     }
 
