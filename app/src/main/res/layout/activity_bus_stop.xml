@@ -143,16 +143,7 @@
             android:text="5 minutes"
             android:layout_alignTop="@+id/line1_details"
             android:layout_alignEnd="@+id/busline2" />
-        <Button
-            android:id="@+id/button_retry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="right"
-            android:layout_marginBottom="37dp"
-            android:text="Reconnect"
-           />
+
 
     </RelativeLayout>
 </ScrollView>
