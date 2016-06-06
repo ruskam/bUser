@@ -97,8 +97,8 @@ public class AbstractActivity extends AppCompatActivity {
 
     protected void turnOffLed()
     {
-        if (btSocket!=null)
-        {
+//        if (btSocket!=null)
+//        {
             if(myConnectThread == null)
                 connect();
             if(myMessageThread==null)
@@ -108,12 +108,13 @@ public class AbstractActivity extends AppCompatActivity {
                 ledon = false;
             }
 
+//
+//        }
 
-        }
     }
 
     public void turnOnLed() {
-        if (btSocket != null) {
+//        if (btSocket != null) {
             if(myConnectThread == null)
                 connect();
             if(myMessageThread==null)
@@ -122,7 +123,7 @@ public class AbstractActivity extends AppCompatActivity {
                 myMessageThread.write("TO");
                 ledon = true;
             }
-        }
+//        }
     }
 
     @Override
