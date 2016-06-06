@@ -3,14 +3,15 @@ package com.example.esr14.signupplay;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.esr14.signupplay.Model.BusStop;
 import com.example.esr14.signupplay.settings.SettingsActivity;
-import com.example.esr14.signupplay.util.AbstractActivity;
+import com.example.esr14.signupplay.util.MyTime;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,44 +28,24 @@ import java.util.Map;
 /**
  * This class is called after a user is logged in
  */
+public class BusStopAct extends AppCompatActivity {
 
-public class BusStopAct extends AbstractActivity {
-    final String DEV = "device";
-    Button retry;
-
-    TextView tvNextBusTime;
+    TextView tvNextBusTime1;
+    TextView tvNextBusTime2;
+    TextView tvBusLine1;
+    TextView tvBusLine2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_stop);
-        retry = (Button) findViewById(R.id.button_retry);
-        tvNextBusTime = (TextView) findViewById(R.id.tvNextBusTime);
 
-        connect();
-        if (isBtConnected) {
-            msg("ok");
-            retry.setText("Connected");
-        }
-        else {
-            msg("Failed to connect");
-        }
-        retry.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                    msg("Retrying to connect");
-                    if(connect())
-                         retry.setText("Connected");
-
-            }
-        });
+        tvNextBusTime1 = (TextView) findViewById(R.id.tvNextBusTime1);
+        tvBusLine1 = (TextView) findViewById(R.id.tvBusLine2);
+        tvNextBusTime2 = (TextView) findViewById(R.id.tvNextBusTime2);
+        tvBusLine2 = (TextView) findViewById(R.id.tvBusLine2);
     }
-@Override
-public void detectedCard() {
-    startActivity(new Intent(this,insideBus.class));
-}
+
     public void displaySettings(View view) {
         startActivity(new Intent(this, SettingsActivity.class));
     }
@@ -104,11 +85,11 @@ public void detectedCard() {
 
         @Override
         protected void onPostExecute(BusStop busStop) {
-
             try {
                 Log.i("info", busStop.getStopName());
 
                 List<String> schedule = busStop.getSchedule();
+                List<Integer> itemsInteger = new ArrayList<>();
                 Map<String, List<Integer>> scheduleMap = new HashMap<>();
                 JSONObject scheduleObject = null;
                 for (int i = 0; i < schedule.size(); i++) {
@@ -120,12 +101,9 @@ public void detectedCard() {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String valString = scheduleObject.getString(key);
-                            //Integer val = Integer.valueOf(valString);
-                            //Log.i("val", val.toString());
-                            //valString = valString.replaceAll("[^0-9]","");
-                            valString = valString.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
+                            valString = valString.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "");
                             List<String> items = Arrays.asList(valString.split(","));
-                            List<Integer> itemsInteger = new ArrayList<>();
+
                             for (int k = 0; k < items.size(); k++) {
                                 Integer val = Integer.valueOf(items.get(k).trim());
                                 itemsInteger.add(val);
@@ -154,7 +132,7 @@ public void detectedCard() {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String val = linesObject.getString(key);
-                            val = val.replaceAll("\\[","").replaceAll("\\]","").replaceAll("\"","");
+                            val = val.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "");
                             Log.i("val", val);
                             List<String> items = Arrays.asList(val.split(","));
                             linesMap.put(key, items);
@@ -164,32 +142,70 @@ public void detectedCard() {
                         e.printStackTrace();
                     }
                 }
-
-
-/**
-                for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
-                    Log.i("mapLINES", entry.getKey() + ": " + entry.getValue());
-                    List<String> temp = entry.getValue();
-                    for (String t: temp){
-                        Log.i("element of stop", t);
+                int curH = 8;
+                int curM = 18;
+                int numberOfNextBuses = 3;
+                String timeText1 = "Next bus in: ";
+                List<Integer> times = MyTime.getNextBusTime(numberOfNextBuses, curH, curM, itemsInteger);
+                for (int i = 0; i < times.size(); i++) {
+                    Log.i("times", MyTime.intToHourMinute(times.get(i))[0] + ":" + MyTime.intToHourMinute(times.get(i))[1]);
+                    int difference = MyTime.getTimeDifference(MyTime.timeToInt(curH, curM), times.get(i));
+                    Log.i("times in minutes", MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1]);
+                    if (i != times.size() - 1) {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + ", ";
+                    } else {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + " minutes";
                     }
                 }
+                tvNextBusTime1.setText(timeText1);
+
+                String timeText2 = "Next bus in: ";
+                List<Integer> times2 = MyTime.getNextBusTime(numberOfNextBuses, curH, curM, itemsInteger);
+                for (int i = 0; i < times.size(); i++) {
+                    Log.i("times", MyTime.intToHourMinute(times.get(i))[0] + ":" + MyTime.intToHourMinute(times.get(i))[1]);
+                    int difference = MyTime.getTimeDifference(MyTime.timeToInt(curH, curM), times.get(i));
+                    Log.i("times in minutes", MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1]);
+                    if (i != times.size() - 1) {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + ", ";
+                    } else {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + " minutes";
+                    }
+                }
+                tvNextBusTime2.setText(timeText1);
+
+
+                String[] lineNumbers = new String[2];
+                List<Integer> lineSchedule = new ArrayList<>();
+
+                int l = 0;
                 for (Map.Entry<String, List<Integer>> entry : scheduleMap.entrySet()) {
-                    Log.i("mapSchedule", entry.getKey() + ": " + entry.getValue());
-                    List<Integer> temp = entry.getValue();
-                    for (Integer t: temp){
-                        Log.i("element of time", t.toString());
+
+                    lineNumbers[l] = entry.getKey();
+                    l++;
+
+                }
+                tvBusLine1.setText(lineNumbers[0]);
+                tvBusLine2.setText(lineNumbers[1]);
+                // tvNextBusTime1
+                // tvNextBusTime1
+
+                for (Map.Entry<String, List<String>> entry : linesMap.entrySet()) {
+
+                    List<String> temp = entry.getValue();
+                    for (String t : temp) {
+
                     }
                 }
-*/
+
+
             } catch (Exception e) {
                 e.printStackTrace();
+                Toast.makeText(getApplicationContext(),
+                        "Services is not available!", Toast.LENGTH_SHORT).show();
             }
+
 
         }
 
     }
-
-
-
 }
