@@ -41,7 +41,7 @@
             android:src="@drawable/bus_default" />
 
         <TextView
-            android:id="@+id/tvNextBusTime1"
+            android:id="@+id/tvBusLine1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/ic_b1"
@@ -51,10 +51,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvBusLine2"
+            android:id="@+id/tvNextBusTime1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNextBusTime1"
+            android:layout_below="@+id/tvBusLine1"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
@@ -71,7 +71,7 @@
 
 
         <TextView
-            android:id="@+id/tvNextBusTime2"
+            android:id="@+id/tvBusLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/ic_b2"
@@ -81,10 +81,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvBusLine2"
+            android:id="@+id/tvNextBusTime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNextBusTime2"
+            android:layout_below="@+id/tvBusLine2"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b2"
             android:onClick="getInsideBus"
@@ -138,11 +138,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:onClick="getInsideBus"
-            android:text="5 minutes"
+            android:text="Line 736 - Sr. Roubado"
             android:layout_alignTop="@+id/tvBusLine2"
             android:layout_alignEnd="@+id/tvNextBusTime2" />
 
-
+        <Button
+            android:id="@+id/button_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right"
+            android:layout_marginBottom="37dp"
+            android:text="Reconnect"
+            />
     </RelativeLayout>
 </ScrollView>
 

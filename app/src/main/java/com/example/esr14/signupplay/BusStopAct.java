@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.esr14.signupplay.Model.BusStop;
 import com.example.esr14.signupplay.settings.SettingsActivity;
+import com.example.esr14.signupplay.util.AbstractActivity;
 import com.example.esr14.signupplay.util.MyTime;
 
 import org.json.JSONException;
@@ -28,12 +30,13 @@ import java.util.Map;
 /**
  * This class is called after a user is logged in
  */
-public class BusStopAct extends AppCompatActivity {
+public class BusStopAct extends AbstractActivity {
 
     TextView tvNextBusTime1;
     TextView tvNextBusTime2;
     TextView tvBusLine1;
     TextView tvBusLine2;
+    Button retry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,31 @@ public class BusStopAct extends AppCompatActivity {
         tvBusLine1 = (TextView) findViewById(R.id.tvBusLine2);
         tvNextBusTime2 = (TextView) findViewById(R.id.tvNextBusTime2);
         tvBusLine2 = (TextView) findViewById(R.id.tvBusLine2);
+        retry = (Button) findViewById(R.id.button_retry);
+
+      //  connect();
+        if (isBtConnected) {
+            msg("ok");
+            retry.setText("Connected");
+        }
+        else {
+            msg("Failed to connect");
+        }
+        retry.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                msg("Retrying to connect");
+                if(connect())
+                    retry.setText("Connected");
+
+            }
+        });
+    }
+    @Override
+    public void detectedCard() {
+        startActivity(new Intent(this,insideBus.class));
     }
 
     public void displaySettings(View view) {
@@ -71,7 +99,7 @@ public class BusStopAct extends AppCompatActivity {
             try {
                 //final String url = "http://10.0.2.2:8080/api/busstop/near/lng=-9.2037&lat=38.660&d=108";
                 //final String url = "http://10.0.2.2:8080/api/busstop/all";
-                final String url = "http://10.0.2.2:8080/api/busstop/stopname=Damaia";
+                final String url = "http://172.20.10.13:8080/api/busstop/stopname=Damaia";
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 BusStop busStop = restTemplate.getForObject(url, BusStop.class);
