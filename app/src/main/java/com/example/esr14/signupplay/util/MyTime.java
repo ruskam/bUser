@@ -21,6 +21,14 @@ public class MyTime {
 
     }
 
+    public static int getTimeDifference(int startTime, int endTime){
+
+        if (endTime > startTime){
+            return endTime - startTime;
+        }
+        return -1;
+    }
+
     public static int timeToInt(int hour, int minute) {
         int intTime = (hour * 3600) + (minute * 60);
 
@@ -60,4 +68,5 @@ public class MyTime {
         System.out.println(nextBus.get(2));
         return nextBus;
     }
+
 }
