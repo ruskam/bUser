@@ -41,24 +41,25 @@
             android:src="@drawable/bus_default" />
 
         <TextView
-            android:id="@+id/tvNextBusTime1"
+            android:id="@+id/tvBusLine1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/ic_b1"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="wewer" />
 
         <TextView
-            android:id="@+id/tvBusLine2"
+            android:id="@+id/tvNextBusTime1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNextBusTime1"
+            android:layout_below="@+id/tvBusLine1"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
-            android:text="Next bus:" />
+            android:text="Next bus in:" />
 
         <ImageView
             android:id="@+id/ic_b2"
@@ -71,24 +72,25 @@
 
 
         <TextView
-            android:id="@+id/tvNextBusTime2"
+            android:id="@+id/tvBusLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/ic_b2"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b2"
             android:onClick="getInsideBus"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="nvb" />
 
         <TextView
-            android:id="@+id/tvBusLine2"
+            android:id="@+id/tvNextBusTime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvNextBusTime2"
+            android:layout_below="@+id/tvBusLine2"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b2"
             android:onClick="getInsideBus"
-            android:text="6 minutes" />
+            android:text="Next bus in: " />
 
         <ImageView
             android:id="@+id/ic_b3"
@@ -131,16 +133,6 @@
             android:layout_marginBottom="37dp"
             android:onClick="displaySettings"
             android:text="@string/settings" />
-
-        <TextView
-            android:id="@+id/tvNextBusTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:onClick="getInsideBus"
-            android:text="5 minutes"
-            android:layout_alignTop="@+id/tvBusLine2"
-            android:layout_alignEnd="@+id/tvNextBusTime2" />
 
 
     </RelativeLayout>
