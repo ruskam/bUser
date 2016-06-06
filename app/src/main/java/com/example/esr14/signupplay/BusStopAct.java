@@ -101,9 +101,6 @@ public class BusStopAct extends AppCompatActivity {
                             String key = (String) keys.next();
                             Log.i("key", key);
                             String valString = scheduleObject.getString(key);
-                            //Integer val = Integer.valueOf(valString);
-                            //Log.i("val", val.toString());
-                            //valString = valString.replaceAll("[^0-9]","");
                             valString = valString.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\"", "");
                             List<String> items = Arrays.asList(valString.split(","));
 
@@ -148,10 +145,33 @@ public class BusStopAct extends AppCompatActivity {
                 int curH = 8;
                 int curM = 18;
                 int numberOfNextBuses = 3;
-                List<Integer> times = MyTime.getNextBusTime(numberOfNextBuses, curH, curM, itemsInteger );
-                for (Integer el : times){
-                    Log.i("times", MyTime.intToHourMinute(el)[0] +":" + MyTime.intToHourMinute(el)[1]);
+                String timeText1 = "Next bus in: ";
+                List<Integer> times = MyTime.getNextBusTime(numberOfNextBuses, curH, curM, itemsInteger);
+                for (int i = 0; i < times.size(); i++) {
+                    Log.i("times", MyTime.intToHourMinute(times.get(i))[0] + ":" + MyTime.intToHourMinute(times.get(i))[1]);
+                    int difference = MyTime.getTimeDifference(MyTime.timeToInt(curH, curM), times.get(i));
+                    Log.i("times in minutes", MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1]);
+                    if (i != times.size() - 1) {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + ", ";
+                    } else {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + " minutes";
+                    }
                 }
+                tvNextBusTime1.setText(timeText1);
+
+                String timeText2 = "Next bus in: ";
+                List<Integer> times2 = MyTime.getNextBusTime(numberOfNextBuses, curH, curM, itemsInteger);
+                for (int i = 0; i < times.size(); i++) {
+                    Log.i("times", MyTime.intToHourMinute(times.get(i))[0] + ":" + MyTime.intToHourMinute(times.get(i))[1]);
+                    int difference = MyTime.getTimeDifference(MyTime.timeToInt(curH, curM), times.get(i));
+                    Log.i("times in minutes", MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1]);
+                    if (i != times.size() - 1) {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + ", ";
+                    } else {
+                        timeText1 = timeText1 + MyTime.intToHourMinute(difference)[0] + ":" + MyTime.intToHourMinute(difference)[1] + " minutes";
+                    }
+                }
+                tvNextBusTime2.setText(timeText1);
 
 
                 String[] lineNumbers = new String[2];
@@ -181,7 +201,7 @@ public class BusStopAct extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(),
-                        "Web services is unavailable!", Toast.LENGTH_SHORT).show();
+                        "Services is not available!", Toast.LENGTH_SHORT).show();
             }
 
 
