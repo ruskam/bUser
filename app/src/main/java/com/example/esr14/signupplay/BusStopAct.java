@@ -41,7 +41,7 @@ public class BusStopAct extends AppCompatActivity {
         setContentView(R.layout.activity_bus_stop);
 
         tvNextBusTime1 = (TextView) findViewById(R.id.tvNextBusTime1);
-        tvBusLine1 = (TextView) findViewById(R.id.tvBusLine1);
+        tvBusLine1 = (TextView) findViewById(R.id.tvBusLine2);
         tvNextBusTime2 = (TextView) findViewById(R.id.tvNextBusTime2);
         tvBusLine2 = (TextView) findViewById(R.id.tvBusLine2);
     }
