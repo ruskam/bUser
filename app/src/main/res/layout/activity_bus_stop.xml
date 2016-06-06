@@ -48,7 +48,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="wewer" />
 
         <TextView
             android:id="@+id/tvNextBusTime1"
@@ -58,7 +59,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b1"
             android:onClick="getInsideBus"
-            android:text="Next bus:" />
+            android:text="Next bus in:" />
 
         <ImageView
             android:id="@+id/ic_b2"
@@ -78,7 +79,8 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b2"
             android:onClick="getInsideBus"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="nvb" />
 
         <TextView
             android:id="@+id/tvNextBusTime2"
@@ -88,7 +90,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/ic_b2"
             android:onClick="getInsideBus"
-            android:text="6 minutes" />
+            android:text="Next bus in: " />
 
         <ImageView
             android:id="@+id/ic_b3"
@@ -132,26 +134,7 @@
             android:onClick="displaySettings"
             android:text="@string/settings" />
 
-        <TextView
-            android:id="@+id/tvNextBusTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:onClick="getInsideBus"
-            android:text="Line 736 - Sr. Roubado"
-            android:layout_alignTop="@+id/tvBusLine2"
-            android:layout_alignEnd="@+id/tvNextBusTime2" />
 
-        <Button
-            android:id="@+id/button_retry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="right"
-            android:layout_marginBottom="37dp"
-            android:text="Reconnect"
-            />
     </RelativeLayout>
 </ScrollView>
 
